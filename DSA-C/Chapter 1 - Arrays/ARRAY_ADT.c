@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// FIX SECTION 
+/* 1. fix the do while loops in the  sub swith cases using different var (option)
+    2. write the relloc code 
+    3. add create array after reset*/
+
 typedef struct ARRAY_ADT
 {
     int total_size;
@@ -21,7 +26,7 @@ int main(int argc, char const *argv[])
 {
     ADT Array_1;
     
-    int used, option, element, index,b_a,target;
+    int used, option, element, index,b_a,target, search_result;
     printf("Enter the number of elemets: ");
     scanf("%d", &used);
     create_array(&Array_1, used);
@@ -51,9 +56,12 @@ int main(int argc, char const *argv[])
                 printf("\t 2. Insert at an index\t");
                 printf("\t 3. Insert at end\t");
                 printf("\t 4. Insert at specific the element position\n");
-                printf("\t");
+                printf("\t 5. Exit to main menu");
+                printf("\t ");
                 scanf("%d", &option);
-                switch (option) // INSERT SWITCH CASE - 1.1
+                do
+                {
+                    switch (option) // INSERT SWITCH CASE - 1.1
                 {
                     case 1:
                         printf("\t Enter the element to insert: ");
@@ -77,22 +85,34 @@ int main(int argc, char const *argv[])
                         scanf("%d",&element);
                         printf("\t Enter the target element: ");
                         scanf("%d",&target);
+                        search_result = linear_search(&Array_1, target);
+                        if (search_result == -1)
+                        {
+                            printf("%d do not exsist !!!\n", target);
+                            break;
+                        }
                         printf("\t Enter before or after the element(B = -1 / A = +1): ");
                         scanf("%d",&b_a);
-                        insert(&Array_1,element,linear_search(&Array_1,target)+b_a);
+                        insert(&Array_1,element,search_result+b_a);
+                        break;
+                    case 5:
+                        printf("\t Exiting to main menu......\n");
                         break;
                     default:
                         printf("\t INVALID INSERTION CHOICE !!!!\n");
                         break;
                 }
-                break; // BREAK of 1.1
+                break; // Break of 1.1 (Insertion case)
+                } while (option != 5 );
+                
+                
             case 3: 
                 printf("Choose accordingly: \n");
                 printf("\t 1. Delete at Begining\t");
                 printf("\t 2. Delete at an index\t");
-                printf("\t 3. Delete a specific element\t");
-                printf("\t 4. Delete at end\n");
-                printf("\t");
+                printf("\t 3. Delete at end\t");
+                printf("\t 4. Delete a specific element\n");
+                printf("\t ");
                 scanf("%d", &option);
                 switch (option) // DELETE SWITCH CASE - 1.2
                 {
@@ -106,21 +126,26 @@ int main(int argc, char const *argv[])
                     delete(&Array_1,index);
                     break;
                 case 3:
-                    printf("\t Enter the element to delete: ");
-                    scanf("%d",&target);
-
-                    delete(&Array_1,linear_search(&Array_1,target));
-                    break;
-                case 4: 
                     printf("\tDeleting at end");
                     delete(&Array_1,Array_1.used_size-1);
+                    break;
+                case 4:
+                    printf("\t Enter the element to delete: ");
+                    scanf("%d",&target);
+                    search_result = linear_search(&Array_1, target);
+                    if (search_result == -1)
+                    {
+                        printf("%d do not exsist !!!\n",target);
+                        break;
+                    }
+                    delete(&Array_1,search_result);
                     break;
 
                 default:
                     printf("\t INVALID DELETION CHOICE !!!\n");
                     break;
                 }
-                break; // BREAK of 1.2
+                break; // BREAK of 1.2 (Delete switch case)
             case 4:
                 printf("Choose accordingly: \n");
                 printf("\t 1. linear search");
@@ -131,7 +156,7 @@ int main(int argc, char const *argv[])
                 case 1:
                     printf("\t Enter the element to search: ");
                     scanf("%d",&element);
-                    int search_result = linear_search(&Array_1,element);
+                    search_result = linear_search(&Array_1,element);
                     if (search_result == -1)
                     {
                         printf("Element not found\n");
@@ -143,7 +168,7 @@ int main(int argc, char const *argv[])
                     printf("\t WARNING CHECK ARRAY SORTING !!! \n");
                     printf("\t Enter the element to search: ");
                     scanf("%d",&element);
-                    int search_result = binary_search(&Array_1,element,0,Array_1.used_size-1);
+                    search_result = binary_search(&Array_1,element,0,Array_1.used_size-1);
                     if (search_result == -1)
                     {
                         printf("Element doesnt exsist\n");
@@ -171,7 +196,7 @@ int main(int argc, char const *argv[])
                 printf("INVALID CHOICE !!!\n");
                 break;
         }
-    } while (option != 6);
+    } while (option != 7);
 
     return 0;
 }
@@ -272,4 +297,5 @@ int binary_search(ADT *a, int element, int start, int end) {
 void reset_array(ADT *a) {
     a->used_size = 0;
     printf("Array has been reset.\n");
+    
 }
