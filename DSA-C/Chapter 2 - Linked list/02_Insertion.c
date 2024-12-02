@@ -11,6 +11,7 @@ void display(Node *head);
 void insert_at_begining(int value, Node **head);
 void insert_at_index(int value, int index, Node *head);
 void insert_at_end(int value, Node *head);
+void insert_after_index(int value, int index, Node * head);
 
 int main(int argc, char const *argv[]) {
     int num, value, choice, index; // Added variables `choice` and `index` for menu
@@ -37,8 +38,9 @@ int main(int argc, char const *argv[]) {
         printf("\nMain Menu:\n"); 
         printf("1. Insert at Beginning\n");
         printf("2. Insert at Index\n");
-        printf("3. Insert at End\n");
-        printf("4. Exit\n");
+        printf("3. Insert after Index\n");
+        printf("4. Insert at End\n");
+        printf("5. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
@@ -56,11 +58,18 @@ int main(int argc, char const *argv[]) {
                 insert_at_index(value, index, head);
                 break;
             case 3:
+                printf("Enter the index to insert after: ");
+                scanf("%d", &index);
+                printf("Enter the value to insert: ");
+                scanf("%d", &value);
+                insert_after_index(value, index, head);
+                break;
+            case 4:
                 printf("Enter the value to insert at the end: ");
                 scanf("%d", &value);
                 insert_at_end(value, head);
                 break;
-            case 4:
+            case 5:
                 printf("Exiting...\n");
                 break;
             default:
@@ -126,4 +135,19 @@ void insert_at_end(int value, Node * head){
     ptr->next = insert;
     insert->next = NULL;
     
+}
+
+void insert_after_index(int value, int index, Node * head){
+    Node * insert = (Node * )malloc(sizeof(Node));
+    Node * ptr = head;
+    int j = 0;
+    while (j != index)
+    {
+        ptr = ptr->next;
+        j++;
+    }
+    insert->data =value;
+    insert->next = ptr->next;
+    ptr->next = insert;
+
 }
