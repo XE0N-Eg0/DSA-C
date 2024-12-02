@@ -96,10 +96,6 @@ int main(int argc, char const *argv[])
         break;
     }
 
-    
-
-
-
     return 0;
 }
 
@@ -125,7 +121,81 @@ struct node * create_node_2(int value, struct node * prev_2){
     new_node->data = value;
     new_node->next = NULL;
     if (prev_2 != NULL) {
-        prev_2->next = new_node;
+        prev_2->next = new_node; // prev_2 contains newnode thus
+         // this  means newnode ->next (in for loop) is now pointing to new_node created  connecting nodes in heap
     }
     return new_node;
 }
+
+/*
+### Answers to Your Questions:
+
+#### 1. Why `head = fresh_node` and not `*head = fresh_node` at line 31?
+- **`head = fresh_node`**:
+  - Here, `head` is a pointer variable of type `Node*`. It holds the address of the first node in the linked list.
+  - When we assign `fresh_node` (also a `Node*`) to `head`, we are setting the `head` pointer to point to the newly created node.
+  - Using `*head` would mean dereferencing the pointer to access the actual structure, but here we are assigning a memory address (not data inside the node), so we simply use `head`.
+
+#### 2. Why not `*prev = fresh_node` at line 33?
+- **`prev = fresh_node`**:
+  - Similar to the above explanation, `prev` is also a pointer variable. It holds the address of the last node created so far.
+  - Assigning `fresh_node` to `prev` updates the pointer `prev` to point to the new node, making it the "current last node."
+  - Using `*prev` would dereference the pointer and attempt to overwrite the data inside the node that `prev` points to, which is not the goal here.
+
+---
+
+#### 3. What Each Pointer Contains at Each Step of the Process?
+
+Here's an explanation of what happens to the pointers (`head`, `prev`, and `fresh_node`) during each step:
+
+**Before the loop starts:**
+- `head = NULL`: The linked list is empty, so the head pointer is initialized to `NULL`.
+- `prev = NULL`: No nodes exist yet, so `prev` is also `NULL`.
+
+**Step-by-Step in the Loop:**
+- **Step 1 (First Node Creation):**
+  - `create_node(value, prev)` is called with `value` and `prev = NULL`.
+    - A new `Node` is allocated (`fresh_node`) with:
+      - `fresh_node->data = value`.
+      - `fresh_node->next = NULL` (no other node exists yet).
+    - Since `prev = NULL`, no linking to a previous node occurs.
+  - **State after creation:**
+    - `fresh_node`: Points to the first node with `data = value` and `next = NULL`.
+    - `head`: Still `NULL` at this point.
+    - `prev`: Still `NULL`.
+  - After the check `if (head == NULL)`, we assign `head = fresh_node`, so:
+    - `head` now points to the first node.
+    - `prev` is updated to `fresh_node`.
+
+- **Step 2 (Subsequent Node Creation):**
+  - `create_node(value, prev)` is called with `value` and `prev` pointing to the last node created.
+    - A new `Node` is allocated (`fresh_node`) with:
+      - `fresh_node->data = value`.
+      - `fresh_node->next = NULL` (no other node exists yet).
+    - Since `prev != NULL`, we set `prev->next = fresh_node`, linking the previous node to the new node.
+  - **State after creation:**
+    - `fresh_node`: Points to the newly created node.
+    - `head`: Still points to the first node.
+    - `prev`: Still points to the previous node (before update).
+  - After the update `prev = fresh_node`:
+    - `prev` now points to the newly created node.
+
+- **Final State After the Loop:**
+  - `head`: Points to the first node in the list.
+  - `prev`: Points to the last node in the list.
+  - Each node's `next` pointer links it to the next node in the list, and the last node's `next` is `NULL`.
+
+---
+
+#### Example Trace with `num = 3` and Input Values `[10, 20, 30]`:
+
+| Step | `value` | `fresh_node`           | `prev`                 | `head`                 | Description                              |
+|------|---------|------------------------|------------------------|------------------------|------------------------------------------|
+| 1    | 10      | Points to `Node(10)`   | `NULL`                 | `NULL`                 | First node created, `head = fresh_node`. |
+| 2    | 20      | Points to `Node(20)`   | Points to `Node(10)`   | Points to `Node(10)`   | New node created, `prev->next = fresh_node`. |
+| 3    | 30      | Points to `Node(30)`   | Points to `Node(20)`   | Points to `Node(10)`   | New node created, `prev->next = fresh_node`. |
+
+The final linked list: `10 -> 20 -> 30 -> NULL`.
+
+Let me know if you need more details!
+*/
