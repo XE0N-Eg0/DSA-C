@@ -6,7 +6,7 @@ typedef struct Linked_list {
     struct Linked_list *next;
 } Node;
 
-Node *create_node(int value, Node *prev);
+Node *create_node(int value, Node *temp);
 void display(Node *head);
 void insert_at_begining(int value, Node **head);
 void insert_at_index(int value, int index, Node *head);
@@ -16,7 +16,7 @@ void insert_after_index(int value, int index, Node * head);
 int main(int argc, char const *argv[]) {
     int num, value, choice, index; // Added variables `choice` and `index` for menu
     Node *head = NULL;
-    Node *prev = NULL;
+    Node *temp = NULL;
 
     printf("Enter the number of nodes you want: ");
     scanf("%d", &num);
@@ -24,12 +24,12 @@ int main(int argc, char const *argv[]) {
     for (int i = 0; i < num; i++) {
         printf("Enter the value of node %d : ", i + 1);
         scanf("%d", &value);
-        Node *fresh_node = create_node(value, prev);
+        Node *fresh_node = create_node(value, temp);
 
         if (head == NULL) {
             head = fresh_node;
         }
-        prev = fresh_node;
+        temp = fresh_node;
     }
 
     do {
@@ -80,13 +80,13 @@ int main(int argc, char const *argv[]) {
     return 0;
 }
 
-Node *create_node(int value, Node *prev) {
+Node *create_node(int value, Node *temp) {
     Node *new_node = (Node *)malloc(sizeof(Node));
     new_node->data = value;
     new_node->next = NULL;
 
-    if (prev != NULL) {
-        prev->next = new_node;
+    if (temp != NULL) {
+        temp->next = new_node;
     }
 
     return new_node;
