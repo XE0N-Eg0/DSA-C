@@ -60,22 +60,11 @@ A **Singly Linked List** is the most basic type of linked list. In this list, ea
   - **Next**: Points to the next node in the list.
 
 ### Diagram:
-```mermaid
-classDiagram
-HEAD --|> NODE_1
-NODE_2 <|-- NODE_1
-NODE_2 --|> NODE_3
-NODE_4 <|-- NODE_3
-HEAD: Data - A
-HEAD: Ptr NODE_1 )
-NODE_1: Data - B
-NODE_1: Ptr NODE_2 )
-NODE_2: Data - C
-NODE_2: Ptr NODE_3 )
-NODE_3: Data - D
-NODE_3: Ptr NODE_4 )
-NODE_4: Data - E
-NODE_4: Ptr NULL )
+```graph LR
+  HEAD((Head: 5)) --> NODE1[Node 1: 10]
+  NODE1 --> NODE2[Node 2: 20]
+  NODE2 --> NODE3[Node 3: 30]
+  NODE3 --> NULL[Null]
 ```
 
 
