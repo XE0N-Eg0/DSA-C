@@ -6,10 +6,11 @@ A **Stack** is a linear data structure that follows the **LIFO (Last In, First O
 **Diagram:**
 ```mermaid
 graph TB
-    A[Empty Stack] --> B[Push 10: Top = 10]
-    B --> C[Push 20: Top = 20]
-    C --> D[Push 30: Top = 30]
-    D --> E[Pop: Top = 20]
+    EmptyStack[Empty Stack] --> Push10[Push 10: Top = 10]
+    Push10 --> Push20[Push 20: Top = 20]
+    Push20 --> Push30[Push 30: Top = 30]
+    Push30 --> Pop30[Pop: Remove 30, Top = 20]
+    Pop30 --> Pop20[Pop: Remove 20, Top = 10]
 ```
 
 ---
@@ -47,8 +48,9 @@ graph TB
 **Diagram:**
 ```mermaid
 graph TB
-    A[Initial Stack: Empty] --> B[Push 10: Top = 10]
-    B --> C[Push 20: Top = 20]
+    Start[Initial Stack: Empty] --> Add10[Push 10: Top = 10]
+    Add10 --> Add20[Push 20: Top = 20]
+    Add20 --> Add30[Push 30: Top = 30]
 ```
 
 **Pseudo Code:**
@@ -73,9 +75,9 @@ function PUSH(stack, element):
 
 **Diagram:**
 ```mermaid
-graph TD
-    A[Stack: Top = 20, 10] --> B[Pop: Remove 20]
-    B --> C[Stack: Top = 10]
+graph TB
+    FullStack[Stack: Top = 30, 20, 10] --> Remove30[Pop: Remove 30, Top = 20]
+    Remove30 --> Remove20[Pop: Remove 20, Top = 10]
 ```
 
 **Pseudo Code:**
