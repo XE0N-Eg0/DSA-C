@@ -4,13 +4,12 @@
 A **Stack** is a linear data structure that follows the **LIFO (Last In, First Out)** principle. This means that the last element added to the stack is the first one to be removed. It is analogous to a stack of plates where you can only add or remove the topmost plate.
 
 **Diagram:**
-```
-Initial:          Stack with Push/Pop Operations:
-|   |             |   |       |   |       | 30|
-|   |             |   |       | 20|       | 20|
-|   |             |10 |       |10 |       |10 |
------             -----       -----       -----
-Empty             Push 10     Push 20     Push 30
+```mermaid
+graph TB
+    A[Empty Stack] --> B[Push 10: Top = 10]
+    B --> C[Push 20: Top = 20]
+    C --> D[Push 30: Top = 30]
+    D --> E[Pop: Top = 20]
 ```
 
 ---
@@ -46,18 +45,11 @@ Empty             Push 10     Push 20     Push 30
 3. Insert the element at the top position.
 
 **Diagram:**
-```
-Before Push:
-|   |
-|   |
-|   |
------
-
-After Push (10):
-|   |
-|   |
-|10 |
------
+```mermaid
+stackDiagram
+    direction TB
+    EmptyStack --> Push10[Push 10]
+    Push10 --> Push20[Push 20]
 ```
 
 **Pseudo Code:**
@@ -81,18 +73,10 @@ function PUSH(stack, element):
 3. Decrement the top pointer.
 
 **Diagram:**
-```
-Before Pop:
-|   |
-|20 |
-|10 |
------
-
-After Pop:
-|   |
-|   |
-|10 |
------
+```mermaid
+graph TD
+    Start[Stack with 20, 10] --> Pop20[Pop: Remove 20]
+    Pop20 --> Result[Stack with 10]
 ```
 
 **Pseudo Code:**
@@ -116,13 +100,10 @@ function POP(stack):
 2. If not, return the top element.
 
 **Diagram:**
-```
-Stack:
-|   |
-|30 |
-|10 |
------
-Top Element: 30
+```mermaid
+stateDiagram-v2
+    [*] --> StackWithTop
+    StackWithTop: Top Element: 30
 ```
 
 **Pseudo Code:**
@@ -133,7 +114,7 @@ function PEEK(stack):
         return NULL
     return stack[TOP]
 ```
-
+ 
 ---
 
 ### 4. isEmpty
@@ -203,11 +184,18 @@ Stack after operations: [10, 30]
 5. Peek -> Top element: 30
 
 **Diagram:**
-```
-Operations:
-Push(10) -> [10]
-Push(20) -> [10, 20]
-Pop()    -> [10]
-Push(30) -> [10, 30]
-Peek()   -> Top = 30
+```mermaid
+sequenceDiagram
+    participant User
+    participant Stack
+    User->>Stack: Push 10
+    Stack->>User: [10]
+    User->>Stack: Push 20
+    Stack->>User: [10, 20]
+    User->>Stack: Pop
+    Stack->>User: [10]
+    User->>Stack: Push 30
+    Stack->>User: [10, 30]
+    User->>Stack: Peek
+    Stack->>User: Top = 30
 ```
