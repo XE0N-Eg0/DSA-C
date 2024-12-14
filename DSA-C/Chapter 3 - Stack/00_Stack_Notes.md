@@ -46,10 +46,9 @@ graph TB
 
 **Diagram:**
 ```mermaid
-stackDiagram
-    direction TB
-    EmptyStack --> Push10[Push 10]
-    Push10 --> Push20[Push 20]
+graph TB
+    A[Initial Stack: Empty] --> B[Push 10: Top = 10]
+    B --> C[Push 20: Top = 20]
 ```
 
 **Pseudo Code:**
@@ -75,8 +74,8 @@ function PUSH(stack, element):
 **Diagram:**
 ```mermaid
 graph TD
-    Start[Stack with 20, 10] --> Pop20[Pop: Remove 20]
-    Pop20 --> Result[Stack with 10]
+    A[Stack: Top = 20, 10] --> B[Pop: Remove 20]
+    B --> C[Stack: Top = 10]
 ```
 
 **Pseudo Code:**
@@ -102,8 +101,8 @@ function POP(stack):
 **Diagram:**
 ```mermaid
 stateDiagram-v2
-    [*] --> StackWithTop
-    StackWithTop: Top Element: 30
+    [*] --> Stack
+    Stack: Top Element: 30
 ```
 
 **Pseudo Code:**
@@ -114,7 +113,7 @@ function PEEK(stack):
         return NULL
     return stack[TOP]
 ```
- 
+
 ---
 
 ### 4. isEmpty
