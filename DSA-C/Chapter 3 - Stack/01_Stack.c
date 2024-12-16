@@ -14,15 +14,15 @@ int isFULL(STACK * ptr);
 void display(STACK * ptr);
 int main(int argc, char const *argv[])
 {
-    // STACK s;
+    // STACK s = (STACK *)malloc(sizeof(STACK));
     // s.top = -1;
     // s.size = 10;
     // s.arr = (int*)malloc(s.size*sizeof(int));
 
-    STACK * stack;
+    STACK * stack = (STACK *)malloc(sizeof(STACK));
     stack->top = -1;
     stack->size = 10;
-    stack->arr = (int)malloc(stack->size*sizeof(int));
+    stack->arr = (int*)malloc(stack->size*sizeof(int));
 
 
 
