@@ -11,7 +11,7 @@ typedef struct STACK
 int isEMPTY(STACK * ptr);
 int isFULL(STACK * ptr);;
 void display(STACK * ptr);
-void PEAK(STACK * ptr);
+void PEEK(STACK * ptr);
 
 int main(int argc, char const *argv[])
 {
@@ -26,7 +26,7 @@ int main(int argc, char const *argv[])
         stack->arr[stack->top] = i;
     }
     display(stack);
-    PEAK(stack);
+    PEEK(stack);
     
     return 0;
 }
@@ -59,7 +59,7 @@ void display(STACK * ptr){
     }
 }
 
-void PEAK(STACK * ptr){
+void PEEK(STACK * ptr){
     int index;
     printf("Enter the index you want to peep: ");
     scanf("%d",&index);
