@@ -53,3 +53,6 @@ dkms.conf
 
 # Removes code editor files
 *.vscode
+
+# Rough Files
+*rough.c
