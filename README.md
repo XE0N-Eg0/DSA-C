@@ -16,10 +16,10 @@ Each chapter in this series focuses on a specific topic and is divided into two 
 ## Chapters
 
 1. **[Chapter 1: Arrays](./DSA-C/Chapter%201%20-%20Arrays)**
-2. **[Chapter 2: Linked Lists](.DSA-C/tree/main/DSA-C/Chapter%202%20-%20Linked%20list)**
-3. **[Chapter 3: Stacks](.DSA-C/tree/main/DSA-C/Chapter%203%20-%20Stack)**
+2. **[Chapter 2: Linked Lists](./DSA-C/Chapter%202%20-%20Linked%20list)**
+3. **[Chapter 3: Stacks](./DSA-C/Chapter%203%20-%20Stack)**
 4. **Chapter 4: Queues** *(Coming Soon)*
-5. **[Chapter 5: Sorting Algorithms](.DSA-C/tree/main/DSA-C/Chapter%206%20-%20Sorting)**
+5. **[Chapter 5: Sorting Algorithms](./DSA-C/Chapter%206%20-%20Sorting)**
 6. **Chapter 6: Trees** *(Coming Soon)*
 7. **Chapter 7: Graphs** *(Coming Soon)*
 
