@@ -7,7 +7,7 @@ typedef struct Singly_Linked_list
     int data;
     struct Singly_Linked_list *next;
 } S_NODE;
-
+    
 typedef struct Doubly_Linked_list
 {
     int data;
