@@ -31,35 +31,35 @@ void merge(int A[], int left, int mid, int right)
   j = mid + 1;
   k = left;
 
-  while (i <= mid && j <= right)
+  while (i <= mid && j <= right) // main case
   {
-    if (A[i] < A[j])
+    if (A[i] < A[j])  // element form Left array 
     {
       B[k] = A[i];
       i++;
       k++;
     }
-    else if (A[j] < A[i])
+    else if (A[j] < A[i]) // element for  Right Array
     {
       B[k] = A[j];
       j++;
       k++;
     }
   }
-  while (i <= mid)
+  while (i <= mid) // left out elements form Left array
   {
     B[k] = A[i];
     i++;
     k++;
   }
-  while (j <= right)
+  while (j <= right) // left out elements form Right array
   {
     B[k] = A[j];
     j++;
     k++;
   }
 
-  for (int i = 0; i <= right; i++)
+  for (int i = 0; i <= right; i++) // copies all elements back to A
   {
     A[i] = B[i];
   }
